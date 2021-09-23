@@ -4,7 +4,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import LocationCityOutlined from '@material-ui/icons/LocationCityOutlined';
 import AddIcon from '@material-ui/icons/Add';
 import { Link } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ export const mainListItems = () => {
 			>
 				<ListItem button>
 					<ListItemIcon>
-						<DriveEtaIcon />
+						<LocationCityOutlined />
 					</ListItemIcon>
 					<ListItemText primary='All cities' />
 				</ListItem>
@@ -29,14 +29,6 @@ export const mainListItems = () => {
 						<AddIcon />
 					</ListItemIcon>
 					<ListItemText primary='Add city' />
-				</ListItem>
-			</Link>
-			<Link to='/add-location'>
-				<ListItem button>
-					<ListItemIcon>
-						<AddIcon />
-					</ListItemIcon>
-					<ListItemText primary='Add location' />
 				</ListItem>
 			</Link>
 		</div>

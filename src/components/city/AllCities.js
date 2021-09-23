@@ -13,6 +13,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import MenuList from '../MenuList';
 import useCities from '../../hooks/useCities';
 import useDeleteCity from '../../hooks/useDeleteCity';
+import useLocations from '../../hooks/useLocations';
 import LocationOnOutlined from '@material-ui/icons/LocationOnOutlined';
 
 const useStyles = makeStyles((theme) => ({
@@ -67,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AllCities() {
 	const { cities, citiesApi } = useCities();
+	const { locations, locationsApi } = useLocations();
 	const { deleted, deleteCityApi } = useDeleteCity();
 	const [isLoading, setisLoading] = useState(false);
 
@@ -74,6 +76,7 @@ export default function AllCities() {
 		async function citiesData() {
 			setisLoading(true);
 			await citiesApi();
+			await locationsApi();
 			setisLoading(false);
 		}
 		citiesData();
@@ -122,30 +125,26 @@ export default function AllCities() {
 													</Typography>
 													<Typography>
 														{city.locations.length !== 0 ? (
-															<ul
-																style={{
-																	listStyleType: 'none',
-																	borderWidth: 5,
-																}}
-																className={classes.locationList}
-															>
-																locations
-																{city.locations.map((location, index) => (
-																	<li key={index}>
-																		<LocationOnOutlined />
-																		{location}
-																	</li>
-																))}
-															</ul>
+															<div>
+																<h4>Locations</h4>
+																{city.locations.map((locationId, index) =>
+																	locations.map((location) =>
+																		location.id === locationId ? (
+																			<div key={location.id}>
+																				<h6>{location.name}</h6>
+																				<LocationOnOutlined />
+																				street {location.street_name}
+																			</div>
+																		) : null
+																	)
+																)}
+															</div>
 														) : (
 															'no location'
 														)}
 													</Typography>
 												</CardContent>
 												<CardActions>
-													<Button fullWidth variant='contained' color='primary'>
-														Edit
-													</Button>
 													<Button
 														fullWidth
 														variant='contained'

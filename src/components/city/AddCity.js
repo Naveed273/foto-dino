@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import TextField from '@material-ui/core/TextField';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import useCities from '../../hooks/useCities';
 import MenuList from '../MenuList';
 import useAddCity from '../../hooks/useAddCity';
 
@@ -79,23 +78,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AddCity() {
-	const { cities, citiesApi } = useCities();
 	const { addCityApi } = useAddCity();
-	const [isLoading, setisLoading] = useState(true);
+	const [isLoading, setisLoading] = useState(false);
 
 	const [id, setid] = useState(0);
 	const [cityName, setcityName] = useState('');
 	const [locations, setlocations] = useState([]);
 	const [cityCode, setcityCode] = useState('');
-
-	useEffect(() => {
-		async function citiesData() {
-			setisLoading(true);
-			await citiesApi();
-			setisLoading(false);
-		}
-		citiesData();
-	}, []);
 
 	const onSubmit = async (e) => {
 		e.preventDefault();

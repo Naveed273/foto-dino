@@ -7,7 +7,7 @@ export default () => {
 
 	const locationsApi = async () => {
 		try {
-			const response = await serverApi.get('/locations');
+			const response = await serverApi.get('locations/');
 			setlocations(response.data);
 			console.log('locationsresponse', response);
 		} catch (error) {

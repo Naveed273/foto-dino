@@ -11,7 +11,7 @@ export default () => {
 			setcities(response.data);
 			console.log('citiesresponse', response);
 		} catch (error) {
-			console.log('FeedsresponseErr', error);
+			console.log('citiesresponseErr', error);
 			setErrorMessage(error);
 		}
 	};
