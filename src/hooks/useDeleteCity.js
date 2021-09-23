@@ -3,7 +3,7 @@ import serverApi from '../api/serverApi';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const notify1 = () =>
+const notify3 = () =>
 	toast.success('City was successfully deleted!', {
 		position: 'top-center',
 		autoClose: 5000,
@@ -13,7 +13,7 @@ const notify1 = () =>
 		draggable: true,
 		progress: 0,
 	});
-const notify2 = () =>
+const notify4 = () =>
 	toast.error('City was not deleted!', {
 		position: 'top-center',
 		autoClose: 5000,
@@ -32,11 +32,11 @@ export default () => {
 		try {
 			const response = await serverApi.delete(`cities/${id}/`);
 			setdeleted(true);
-			notify1();
+			notify3();
 			console.log('deletecityResponse', response);
 		} catch (error) {
 			setdeleted(false);
-			notify2();
+			notify4();
 			console.log('deletecityResponseErr', error);
 			setErrorMessage(error);
 		}

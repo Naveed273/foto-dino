@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { ToastContainer } from 'react-toastify';
 
 import CircularProgress from '@material-ui/core/CircularProgress';
 import MenuList from '../MenuList';
@@ -56,13 +57,13 @@ const useStyles = makeStyles((theme) => ({
 	cardContent: {
 		flexGrow: 1,
 	},
-	locationList: {
-		listStyleType: 'none',
-		marginLeft: theme.spacing(-5),
-	},
+
 	footer: {
 		backgroundColor: theme.palette.background.paper,
 		padding: theme.spacing(6),
+	},
+	titleDiv: {
+		marginBottom: theme.spacing(5),
 	},
 }));
 
@@ -105,6 +106,17 @@ export default function AllCities() {
 									All Cities
 								</Typography>
 							</Container>
+							<ToastContainer
+								position='top-center'
+								autoClose={5000}
+								hideProgressBar={false}
+								newestOnTop={false}
+								closeOnClick
+								rtl={false}
+								pauseOnFocusLoss
+								//draggable
+								pauseOnHover
+							/>
 						</div>
 
 						{isLoading ? (
@@ -120,17 +132,20 @@ export default function AllCities() {
 										<Grid item key={city.id} xs={12} sm={6} md={4}>
 											<Card className={classes.card}>
 												<CardContent className={classes.cardContent}>
-													<Typography gutterBottom variant='h5' component='h2'>
+													<Typography gutterBottom variant='h4' component='h2'>
 														{city.name}
 													</Typography>
 													<Typography>
 														{city.locations.length !== 0 ? (
 															<div>
-																<h4>Locations</h4>
+																<h5 className={classes.titleDiv}>Locations</h5>
 																{city.locations.map((locationId, index) =>
 																	locations.map((location) =>
 																		location.id === locationId ? (
-																			<div key={location.id}>
+																			<div
+																				key={location.id}
+																				className={classes.titleDiv}
+																			>
 																				<h6>{location.name}</h6>
 																				<LocationOnOutlined />
 																				street {location.street_name}
