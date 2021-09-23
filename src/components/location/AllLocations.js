@@ -12,7 +12,6 @@ import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import MenuList from '../MenuList';
 import useCities from '../../hooks/useCities';
-import useDeleteCity from '../../hooks/useDeleteCity';
 import LocationOnOutlined from '@material-ui/icons/LocationOnOutlined';
 
 const useStyles = makeStyles((theme) => ({
@@ -65,9 +64,8 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function AllCities() {
+export default function AllLocations() {
 	const { cities, citiesApi } = useCities();
-	const { deleted, deleteCityApi } = useDeleteCity();
 	const [isLoading, setisLoading] = useState(false);
 
 	useEffect(() => {
@@ -77,7 +75,7 @@ export default function AllCities() {
 			setisLoading(false);
 		}
 		citiesData();
-	}, [deleted]);
+	}, []);
 
 	const classes = useStyles();
 
@@ -143,14 +141,10 @@ export default function AllCities() {
 													</Typography>
 												</CardContent>
 												<CardActions>
-													<Button fullWidth variant='contained' color='primary'>
-														Edit
-													</Button>
 													<Button
 														fullWidth
 														variant='contained'
 														color='secondary'
-														onClick={() => deleteCityApi(city.id)}
 													>
 														Delete
 													</Button>
